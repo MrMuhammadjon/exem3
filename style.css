@@ -1,0 +1,587 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: -90px;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    z-index: 1;
+}
+
+.head-con {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+    margin: 10px auto;
+}
+
+.head-logo {
+    width: 100%;
+    flex: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.head-logo .material-symbols-outlined {
+    font-size: 100px;
+    color: blue;
+}
+
+.head-logo h1 {
+    font-size: 30px;
+    font-weight: 400;
+    color: blue;
+}
+
+.top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#searchForm {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+#searchForm button,
+#sortByLikesBtn {
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#searchForm button:hover,
+#sortByLikesBtn:hover {
+    background-color: #333;
+}
+
+.categor {
+    background-color: #111;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    padding: 10px;
+}
+
+main {
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 50px auto;
+}
+
+.user-card {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    transition: 0.3s ease;
+    background-color: white;
+}
+
+.user-card:hover{
+    transform: scale(1.05);
+}
+
+.user-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-position: center;
+}
+
+.user-card h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.user-card p {
+    text-align: center;
+}
+
+.saveBtn {
+    padding: 5px 20px;
+    background-color: blue;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid blue;
+    transition: 0.3s ease;
+}
+
+.saveBtn:hover {
+    background: none;
+    color: blue;
+    cursor: pointer;
+}
+
+.show-moer-content {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-more-btn {
+    border: none;
+    background-color: #111;
+    border-radius: 10px;
+    padding: 10px 30px;
+    color: white;
+    transition: 0.3s ease;
+    border: 1px solid #111;
+}
+
+.show-more-btn:hover {
+    background: none;
+    color: #111;
+    cursor: pointer;
+}
+
+
+
+
+
+/* From Uiverse.io by BlackisPlay */
+
+.loader-conatiner {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: none;
+    transition: 1s ease;
+    z-index: 2;
+}
+
+#ghost {
+    position: relative;
+    scale: 0.8;
+}
+
+#red {
+    animation: upNDown infinite 0.5s;
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    grid-template-areas:
+        "a1  a2  a3  a4  a5  top0  top0  top0  top0  a10 a11 a12 a13 a14"
+        "b1  b2  b3  top1 top1 top1 top1 top1 top1 top1 top1 b12 b13 b14"
+        "c1 c2 top2 top2 top2 top2 top2 top2 top2 top2 top2 top2 c13 c14"
+        "d1 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 d14"
+        "e1 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 e14"
+        "f1 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 top3 f14"
+        "top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4"
+        "top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4"
+        "top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4"
+        "top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4"
+        "top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4"
+        "top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4 top4"
+        "st0 st0 an4 st1 an7 st2 an10 an10 st3 an13 st4 an16 st5 st5"
+        "an1 an2 an3 an5 an6 an8 an9 an9 an11 an12 an14 an15 an17 an18";
+}
+
+@keyframes upNDown {
+
+    0%,
+    49% {
+        transform: translateY(0px);
+    }
+
+    50%,
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+#top0,
+#top1,
+#top2,
+#top3,
+#top4,
+#st0,
+#st1,
+#st2,
+#st3,
+#st4,
+#st5 {
+    background-color: red;
+}
+
+#top0 {
+    grid-area: top0;
+}
+
+#top1 {
+    grid-area: top1;
+}
+
+#top2 {
+    grid-area: top2;
+}
+
+#top3 {
+    grid-area: top3;
+}
+
+#top4 {
+    grid-area: top4;
+}
+
+#st0 {
+    grid-area: st0;
+}
+
+#st1 {
+    grid-area: st1;
+}
+
+#st2 {
+    grid-area: st2;
+}
+
+#st3 {
+    grid-area: st3;
+}
+
+#st4 {
+    grid-area: st4;
+}
+
+#st5 {
+    grid-area: st5;
+}
+
+#an1 {
+    grid-area: an1;
+    animation: flicker0 infinite 0.5s;
+}
+
+#an18 {
+    grid-area: an18;
+    animation: flicker0 infinite 0.5s;
+}
+
+#an2 {
+    grid-area: an2;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an17 {
+    grid-area: an17;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an3 {
+    grid-area: an3;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an16 {
+    grid-area: an16;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an4 {
+    grid-area: an4;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an15 {
+    grid-area: an15;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an6 {
+    grid-area: an6;
+    animation: flicker0 infinite 0.5s;
+}
+
+#an12 {
+    grid-area: an12;
+    animation: flicker0 infinite 0.5s;
+}
+
+#an7 {
+    grid-area: an7;
+    animation: flicker0 infinite 0.5s;
+}
+
+#an13 {
+    grid-area: an13;
+    animation: flicker0 infinite 0.5s;
+}
+
+#an9 {
+    grid-area: an9;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an10 {
+    grid-area: an10;
+    animation: flicker1 infinite 0.5s;
+}
+
+#an8 {
+    grid-area: an8;
+    animation: flicker0 infinite 0.5s;
+}
+
+#an11 {
+    grid-area: an11;
+    animation: flicker0 infinite 0.5s;
+}
+
+@keyframes flicker0 {
+
+    0%,
+    49% {
+        background-color: red;
+    }
+
+    50%,
+    100% {
+        background-color: transparent;
+    }
+}
+
+@keyframes flicker1 {
+
+    0%,
+    49% {
+        background-color: transparent;
+    }
+
+    50%,
+    100% {
+        background-color: red;
+    }
+}
+
+#eye {
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+
+#eye::before {
+    content: "";
+    background-color: white;
+    width: 20px;
+    height: 50px;
+    transform: translateX(10px);
+    display: block;
+    position: absolute;
+}
+
+#eye::after {
+    content: "";
+    background-color: white;
+    width: 40px;
+    height: 30px;
+    transform: translateY(10px);
+    display: block;
+    position: absolute;
+}
+
+#eye1 {
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+#eye1::before {
+    content: "";
+    background-color: white;
+    width: 20px;
+    height: 50px;
+    transform: translateX(10px);
+    display: block;
+    position: absolute;
+}
+
+#eye1::after {
+    content: "";
+    background-color: white;
+    width: 40px;
+    height: 30px;
+    transform: translateY(10px);
+    display: block;
+    position: absolute;
+}
+
+#pupil {
+    width: 20px;
+    height: 20px;
+    background-color: blue;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    z-index: 1;
+    animation: eyesMovement infinite 3s;
+}
+
+#pupil1 {
+    width: 20px;
+    height: 20px;
+    background-color: blue;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    z-index: 1;
+    animation: eyesMovement infinite 3s;
+}
+
+@keyframes eyesMovement {
+
+    0%,
+    49% {
+        transform: translateX(0px);
+    }
+
+    50%,
+    99% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+#shadow {
+    background-color: black;
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    border-radius: 50%;
+    transform: rotateX(80deg);
+    filter: blur(20px);
+    top: 80%;
+    animation: shadowMovement infinite 0.5s;
+}
+
+@keyframes shadowMovement {
+
+    0%,
+    49% {
+        opacity: 0.5;
+    }
+
+    50%,
+    100% {
+        opacity: 0.2;
+    }
+}
+
+/* From Uiverse.io by adamgiebl */
+.dots-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100%;
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #b3d4fc;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.dot:last-child {
+    margin-right: 0;
+}
+
+.dot:nth-child(1) {
+    animation-delay: -0.3s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: -0.1s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.1s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        background-color: #b3d4fc;
+        box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+    }
+
+    50% {
+        transform: scale(1.2);
+        background-color: #6793fb;
+        box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
+    }
+
+    100% {
+        transform: scale(0.8);
+        background-color: #b3d4fc;
+        box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+    }
+}
