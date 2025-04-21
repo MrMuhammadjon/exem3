@@ -80,11 +80,9 @@ searchForm.addEventListener('input', async (e) => {
     if (!query) {
         const JSONuser = JSON.parse(localStorage.getItem('users')) || []
         RenderUsers(JSONuser)
-        notFound.style.display = 'none'
-
-    } else {
-        notFound.style.display = 'flex'
     }
+
+
 
     try {
         const JSONuser = JSON.parse(localStorage.getItem('users')) || []
@@ -95,6 +93,12 @@ searchForm.addEventListener('input', async (e) => {
         })
 
         RenderUsers(filterJson)
+
+        if (filterJson.length === 0) {
+            notFound.style.display = 'flex';
+        } else {
+            notFound.style.display = 'none';
+        }
 
     } catch (error) {
         console.error(error)
