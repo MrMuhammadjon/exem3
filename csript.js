@@ -4,6 +4,8 @@ const LoaderContainer = document.querySelector('.loader-conatiner')
 const searchInput = document.getElementById('searchInput')
 const searchForm = document.getElementById('searchForm')
 const showMoreBtn = document.querySelector('.show-more-btn')
+let notFound = document.querySelector('.not-found')
+
 let showMore = 20
 
 AIPrender()
@@ -13,6 +15,8 @@ showMoreBtn.addEventListener('click', (e) => {
     showMore += 10
     console.log(showMore);
     AIPrender()
+    notFound.style.display = 'none'
+    searchInput.value = ''
 })
 
 async function AIPrender() {
@@ -23,7 +27,6 @@ async function AIPrender() {
         RenderUsers(data.results)
         localStorage.setItem('users', JSON.stringify(data.results))
 
-        console.log(data.results);
 
 
     } catch (error) {
@@ -58,6 +61,7 @@ function RenderUsers(params) {
         userCountry.textContent = element.location.country
         userSaveBtn.className = 'saveBtn'
         userSaveBtn.textContent = 'save'
+        userSaveBtn.addEventListener('click', () => saveMOdal(element))
 
         userCard.appendChild(userImg)
         userCard.appendChild(userNmae)
@@ -72,18 +76,22 @@ searchForm.addEventListener('input', async (e) => {
     e.preventDefault();
 
     const query = searchInput.value.trim().toLowerCase();
-    console.log('Search query:', query);
+
     if (!query) {
         const JSONuser = JSON.parse(localStorage.getItem('users')) || []
         RenderUsers(JSONuser)
+        notFound.style.display = 'none'
+
+    } else {
+        notFound.style.display = 'flex'
     }
+
     try {
         const JSONuser = JSON.parse(localStorage.getItem('users')) || []
 
         const filterJson = JSONuser.filter(user => {
             const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
-            const email = user.email.toLowerCase();
-            return fullName.includes(query) || email.includes(query);
+            return fullName.includes(query);
         })
 
         RenderUsers(filterJson)
@@ -108,7 +116,7 @@ categor.addEventListener('click', async () => {
     const categorValue = categor.value
     const JSONuserCate = JSON.parse(localStorage.getItem('users')) || []
     console.log(JSONuserCate);
-    
+
 
     if (categorValue === 'all') {
         RenderUsers(JSONuserCate)
@@ -124,3 +132,40 @@ categor.addEventListener('click', async () => {
     }
 })
 
+const saveUsers = []
+
+let saveMain = document.querySelector('.save-main')
+
+function saveMOdal(params) {
+    saveUsers.push(params)
+    localStorage.setItem('saveUser', JSON.stringify(saveUsers))
+    RenderSaveUser()
+}
+
+function RenderSaveUser() {
+    const LocalSaveUser = JSON.parse(localStorage.getItem('saveUser')) || []
+    saveMain.innerHTML = ""
+    LocalSaveUser.forEach((element) => {
+        const userCard = document.createElement('div')
+        const userImg = document.createElement('img')
+        const userNmae = document.createElement('h1')
+        const userEmail = document.createElement('p')
+        const userCountry = document.createElement('p')
+
+        userCard.className = 'user-card'
+        userImg.src = element.picture.large
+        userNmae.className = 'user-name'
+        userNmae.textContent = element.name.first
+        userEmail.className = 'user-email'
+        userEmail.textContent = element.email
+        userCountry.textContent = element.location.country
+
+        userCard.appendChild(userImg)
+        userCard.appendChild(userNmae)
+        userCard.appendChild(userEmail)
+        userCard.appendChild(userCountry)
+        saveMain.appendChild(userCard)
+    })
+}
+
+RenderSaveUser()
